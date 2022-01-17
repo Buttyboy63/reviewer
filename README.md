@@ -22,3 +22,14 @@ Le code des différents services est présent dans `src/`.
 ## Définitions de l'API
 
 L'API visible de l'utilisateur est définie dans le fichier `swagger.yaml`. Pour visualiser le fichier, vous pouvez utiliser le [Swagger editor](https://editor.swagger.io/).
+
+
+#Commandes Utiles
+
+##Verifier si image propose un shell
+docker run <image:version> -- /bin/sh
+
+
+##Bind le containeur a un port
+Ce fait au lancement du containeur
+docker run -p <PortHôte>:<PortContaineur> --name <Customname> <imageName>

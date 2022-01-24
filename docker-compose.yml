@@ -1,0 +1,40 @@
+version: "3.9"
+    
+services:
+  details:
+    build: src/details/
+    restart: always
+  mongodb:
+    build: src/mongodb/
+    restart: always
+  mysql:
+    build: src/mysql/
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: somewordpress    
+  productpage:
+    build: src/productpage/
+    depends_on:
+      - mongodb
+      - details
+      - reviews
+    environment:
+      FLOOD_FACTOR: 0
+#Pas besoin de links avec depends_on
+    ports:
+      - "9080:9080"
+    restart: always
+  ratings:
+    build: src/ratings
+    restart: always
+  reviews:
+#    build: src/reviews/reviews-wlpcfg/
+    image: docker.io/istio/examples-bookinfo-reviews-v1:1.16.2 
+    depends_on:
+      - ratings
+    environment:
+      SERVICE_VERSION: -v1
+      ENABLE_RATINGS: -false
+      START_COLOR: -black
+    restart: always
+

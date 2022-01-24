@@ -39,6 +39,11 @@ sudo vim /etc/group
 	docker:x:XXX:<user>
 ```
 Le plus simple est de deco/reco l'utilisateur (voir un reboot si besoin) pour que le changement prenne effet.
+Lancer Docker au démarrage du système
+```bash
+sudo systemctl enable docker
+sudo systemctl start docker
+```
 
 ## Commandes de base
 
@@ -64,3 +69,8 @@ Ce fait au lancement du containeur
 ```bash
 docker run -p <PortHôte>:<PortContaineur> --name <Customname> <imageName>
 ```
+
+# Docker Compose
+## Installation
+https://docs.docker.com/compose/cli-command/#installing-compose-v2
+

@@ -33,8 +33,8 @@ services:
     depends_on:
       - ratings
     environment:
-      SERVICE_VERSION: -v1
-      ENABLE_RATINGS: -false
-      START_COLOR: -black
+      SERVICE_VERSION: v2
+      ENABLE_RATINGS: 'true'
+      STAR_COLOR: gold 
     restart: always
 

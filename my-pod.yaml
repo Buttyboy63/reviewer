@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-pod
+  labels:
+    role: myrole
+spec:
+  containers:
+    - name: my-pod-dock
+      image: gcr.io/kuar-demo/kuard-amd64:blue
+      ports:
+        - name: web
+          containerPort: 8080
+          protocol: TCP

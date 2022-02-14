@@ -1,14 +1,23 @@
 apiVersion: v1
-kind: Pod
+kind: Deployment
 metadata:
-  name: details-pod
+  name: details-deployment
   labels:
     app: details
 spec:
-  containers:
-    - name: my-pod-dock
-      image: gcr.io/kuar-demo/kuard-amd64:blue
-      ports:
-        - name: web
-          containerPort: 8080
-          protocol: TCP
+  replicas: 3
+  selector:
+    matchLabels: 
+      app: details-deployment
+  template:
+    metadata:
+      labels:
+        app: details-deployment
+    spec:
+      containers:
+        - name: my-details-dock
+          image: gcr.io/kuar-demo/kuard-amd64:blue
+          ports:
+            - name: web
+              containerPort: 8080
+              protocol: TCP

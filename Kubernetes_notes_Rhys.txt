@@ -1,0 +1,14 @@
+livenessProbe:
+  httpGet:
+    path: /healthy
+    port 8080
+  initialDelaySeconds: 5
+  timeoutSeconds: 1
+  periodSeconds: 10
+  failureThreshold: 3
+
+#initialDelaySeconds/ Kubernetes deply le pod et effectue un test qu'après X secondes
+#timeoutSeconds: Temps d'attente d'une réponse
+#periodSeconds: Test tout les X
+#failureThreshold: Nombre d,échecs pour signaler un failure
+Par convention les sondes de santé sont en /healthz, oui un z

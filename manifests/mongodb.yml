@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongodb-deployment
+  labels:
+    app: mongodb
+spec:
+  replicas: 1
+  selector:
+    matchLabels: 
+      app: mongodb-deployment
+  template:
+    metadata:
+      labels:
+        app: mongodb-deployment
+    spec:
+      containers:
+        - name: my-mongodb-dock
+          image: reviewer_mongodb:v1.2

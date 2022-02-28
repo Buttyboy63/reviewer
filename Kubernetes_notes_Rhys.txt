@@ -12,3 +12,17 @@ livenessProbe:
 #periodSeconds: Test tout les X
 #failureThreshold: Nombre d,échecs pour signaler un failure
 Par convention les sondes de santé sont en /healthz, oui un z
+
+
+Config map (pour données non secret)
+contient uniquement du data
+
+le pipe "|" permet a yaml d'interpréter le rest du code comme un fichier en prenant en compte l'identation
+
+
+ensuite dans le pod on indique dans une env:
+-name: BLABLABLA
+
+la version avec fichier utilise un volume puisque k8 va créer ce fichier
+
+

@@ -11,7 +11,11 @@ docker build -t "reviewer_mysql:$version" ./src/mysql/
 docker build -t "reviewer_productpage:$version" ./src/productpage/
 docker build -t "reviewer_ratings:$version" ./src/ratings/
 
-# docker build -t "reviewer_reviews:$version" docker.io/istio/examples-bookinfo-reviews-v1:1.16.2 
+
+docker pull istio/examples-bookinfo-reviews-v1:1.16.2
+docker tag istio/examples-bookinfo-reviews-v1:1.16.2 reviewer_reviews:v1.2
+kind load docker-image reviewer_reviews:v1.2
+echo "${green}reviews image has been loaded in kind ! ${reset}" 
 
 kind load docker-image reviewer_mongodb:$version
 echo "${green}mongodb image has been loaded in kind ! ${reset}" 

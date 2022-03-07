@@ -1,18 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ratings-deployment
+  name: ratings
   labels:
     app: ratings
 spec:
   replicas: 1
   selector:
     matchLabels: 
-      app: ratings-deployment
+      app: ratings
   template:
     metadata:
       labels:
-        app: ratings-deployment
+        app: ratings
     spec:
       containers:
         - name: my-ratings-dock

@@ -1,18 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: productpage-deployment
+  name: productpage
   labels:
     app: productpage
 spec:
   replicas: 1
   selector:
     matchLabels: 
-      app: productpage-deployment
+      app: productpage
   template:
     metadata:
       labels:
-        app: productpage-deployment
+        app: productpage
     spec:
       containers:
         - name: my-productpage-dock

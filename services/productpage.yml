@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: details
+  name: productpage-deployment
   labels:
-    app: details
+    app: productpage
 spec:
   replicas: 1
   selector:
     matchLabels: 
-      app: details
+      app: productpage-deployment
   template:
     metadata:
       labels:
-        app: details
+        app: productpage-deployment
     spec:
       containers:
-        - name: my-details-dock
-          image: reviewer_details:v1.2
+        - name: my-productpage-dock
+          image: reviewer_productpage:v1.2
           ports:
             - name: web
               containerPort: 9080

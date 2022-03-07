@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: details
+  name: ratings-deployment
   labels:
-    app: details
+    app: ratings
 spec:
   replicas: 1
   selector:
     matchLabels: 
-      app: details
+      app: ratings-deployment
   template:
     metadata:
       labels:
-        app: details
+        app: ratings-deployment
     spec:
       containers:
-        - name: my-details-dock
-          image: reviewer_details:v1.2
+        - name: my-ratings-dock
+          image: reviewer_ratings:v1.2
           ports:
             - name: web
               containerPort: 9080

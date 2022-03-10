@@ -14,6 +14,24 @@ https://dockercheatsheet.com/
 
 Application microservice pour le cours de Technologie des conteneurs.
 
+## Setup
+
+make sure to have the following software installed :
+- docker
+- kubectl
+- kind
+
+Start the docker service :
+```bash
+sudo systemctl start docker
+```
+
+Run the script :
+```bash
+chmod +x startup.sh
+./startup.sh
+```
+
 ## Code des services
 
 Le code des différents services est présent dans `src/`.

@@ -31,16 +31,18 @@ progress_bar () {
 
 # build docker images with DockerFiles
 progress_bar "Building Docker Images" 0 6
+
 docker build -t "reviewer_details:$version" ./src/details/  1> "$outfile"
-
 progress_bar "Building Docker Images" 1 6
+
 docker build -t "reviewer_mongodb:$version" ./src/mongodb/ 1> "$outfile"
-
 progress_bar "Building Docker Images" 2 6
-docker build -t "reviewer_mysql:$version" ./src/mysql/ 1> "$outfile"
 
+docker build -t "reviewer_mysql:$version" ./src/mysql/ 1> "$outfile"
 progress_bar "Building Docker Images" 3 6
+
 docker build -t "reviewer_productpage:$version" ./src/productpage/ 1> "$outfile"
+progress_bar "Building Docker Images" 4 6
 
 docker build -t "reviewer_ratings:$version" ./src/ratings/ 1> "$outfile"
 progress_bar "Building Docker Images" 5 6
@@ -76,9 +78,15 @@ progress_bar "Loading Images in Kind" 6 6
 echo -ne "\n"
 
 # # start all kubernetes objects
-progress_bar "Starting Kubernetes Objects" 0 2 1> "$outfile"
+
+progress_bar "Starting Kubernetes Objects" 0 3 1> "$outfile"
+
 kubectl apply -f ./manifests/
-progress_bar "Starting Kubernetes Objects" 1 2 1> "$outfile"
+progress_bar "Starting Kubernetes Objects" 1 3 1> "$outfile"
+
 kubectl apply -f ./services/
-progress_bar "Starting Kubernetes Objects" 2 2 1> "$outfile"
+progress_bar "Starting Kubernetes Objects" 2 3 1> "$outfile"
+
+kubectl apply -f ./secrets/
+progress_bar "Starting Kubernetes Objects" 2 3 1> "$outfile"
 echo -ne '\n'

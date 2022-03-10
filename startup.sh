@@ -18,7 +18,7 @@ while getopts ":t" option; do
    esac
 done
 
-# (($2*(24/$3)))
+
 progress_bar () {
    n="$(($2*(24/$3)))"
    pct="$((($2*100)/$3))%"
@@ -47,14 +47,14 @@ progress_bar "Building Docker Images" 4 6
 docker build -t "reviewer_ratings:$version" ./src/ratings/ 1> "$outfile"
 progress_bar "Building Docker Images" 5 6
 
-#pulling 'reviews' remotely
+# pulling 'reviews' remotely
 
 docker pull istio/examples-bookinfo-reviews-v1:1.16.2 1> "$outfile"
 docker tag istio/examples-bookinfo-reviews-v1:1.16.2 reviewer_reviews:v1.2 1> "$outfile"
 progress_bar "Building Docker Images" 6 6
 echo -ne "\n"
 
-# # load images in kind
+# load images in kind
 
 progress_bar "Loading Images in Kind" 0 6
 
@@ -77,16 +77,23 @@ kind load docker-image reviewer_ratings:$version 1> "$outfile"
 progress_bar "Loading Images in Kind" 6 6
 echo -ne "\n"
 
-# # start all kubernetes objects
+# start all kubernetes objects
 
-progress_bar "Starting Kubernetes Objects" 0 3 1> "$outfile"
+progress_bar "Starting Kubernetes Objects" 0 3
 
-kubectl apply -f ./manifests/
-progress_bar "Starting Kubernetes Objects" 1 3 1> "$outfile"
+kubectl apply -f ./manifests/ 1> "$outfile"
+progress_bar "Starting Kubernetes Objects" 1 3
 
-kubectl apply -f ./services/
+kubectl apply -f ./services/ 1> "$outfile"
 progress_bar "Starting Kubernetes Objects" 2 3 1> "$outfile"
 
-kubectl apply -f ./secrets/
-progress_bar "Starting Kubernetes Objects" 2 3 1> "$outfile"
+kubectl apply -f ./secrets/ 1>  "$outfile"
+progress_bar "Starting Kubernetes Objects" 2 3
 echo -ne '\n'
+
+progress_bar "PortForwarding" 0 1
+pod=$(kubectl get pods |grep -oh "\w*productpage\w*" *) 1> "$outfile"
+kubectl port-forward $pod 30123:9080 1> "$outfile"
+progress_bar "PortForwarding" 1 1
+
+

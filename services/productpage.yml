@@ -1,23 +1,15 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: v1
+kind: Service
 metadata:
-  name: productpage-deployment
+  name: productpage
   labels:
     app: productpage
 spec:
-  replicas: 1
+  type: NodePort
+  ports:
+  - nodePort: 30123
+    port: 9080
+    protocol: TCP
+    targetPort: 9080
   selector:
-    matchLabels: 
-      app: productpage-deployment
-  template:
-    metadata:
-      labels:
-        app: productpage-deployment
-    spec:
-      containers:
-        - name: my-productpage-dock
-          image: reviewer_productpage:v1.2
-          ports:
-            - name: web
-              containerPort: 9080
-              protocol: TCP
+    app: productpage

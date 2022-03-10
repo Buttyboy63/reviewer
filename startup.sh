@@ -1,4 +1,4 @@
-#! /bin/sh
+#!/bin/sh
 
 # colors
 green=`tput setaf 2`
@@ -50,35 +50,35 @@ progress_bar "Building Docker Images" 5 6
 docker pull istio/examples-bookinfo-reviews-v1:1.16.2 1> "$outfile"
 docker tag istio/examples-bookinfo-reviews-v1:1.16.2 reviewer_reviews:v1.2 1> "$outfile"
 progress_bar "Building Docker Images" 6 6
-echo -ne '\n'
+echo -ne "\n"
 
 # # load images in kind
 
-# progress_bar "Loading Images in Kind" 0 6
+progress_bar "Loading Images in Kind" 0 6
 
-# kind load docker-image reviewer_reviews:v1.2
-# progress_bar "Loading Images in Kind" 1 6
+kind load docker-image reviewer_reviews:v1.2 1> "$outfile"
+progress_bar "Loading Images in Kind" 1 6
 
-# kind load docker-image reviewer_mongodb:$version
-# progress_bar "Loading Images in Kind" 2 6
+kind load docker-image reviewer_mongodb:$version 1> "$outfile"
+progress_bar "Loading Images in Kind" 2 6
 
-# kind load docker-image reviewer_mysql:$version
-# progress_bar "Loading Images in Kind" 3 6
+kind load docker-image reviewer_mysql:$version 1> "$outfile"
+progress_bar "Loading Images in Kind" 3 6
 
-# kind load docker-image reviewer_productpage:$version
-# progress_bar "Loading Images in Kind" 4 6
+kind load docker-image reviewer_productpage:$version 1> "$outfile"
+progress_bar "Loading Images in Kind" 4 6
 
-# kind load docker-image reviewer_details:$version
-# progress_bar "Loading Images in Kind" 5 6
+kind load docker-image reviewer_details:$version 1> "$outfile"
+progress_bar "Loading Images in Kind" 5 6
 
-# kind load docker-image reviewer_ratings:$version
-# progress_bar "Loading Images in Kind" 6 6
-# echo -ne '\n'
+kind load docker-image reviewer_ratings:$version 1> "$outfile"
+progress_bar "Loading Images in Kind" 6 6
+echo -ne "\n"
 
 # # start all kubernetes objects
-# progress_bar "Starting Kubernetes Objects" 0 2
-# kubectl apply -f ./manifests/*.yml
-# progress_bar "Starting Kubernetes Objects" 1 2
-# kubectl apply -f ./services/*.yml
-# progress_bar "Starting Kubernetes Objects" 2 2
-# echo -ne '\n'
+progress_bar "Starting Kubernetes Objects" 0 2 1> "$outfile"
+kubectl apply -f ./manifests/
+progress_bar "Starting Kubernetes Objects" 1 2 1> "$outfile"
+kubectl apply -f ./services/
+progress_bar "Starting Kubernetes Objects" 2 2 1> "$outfile"
+echo -ne '\n'

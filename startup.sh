@@ -47,42 +47,42 @@ echo -ne "\n"
 
 # load images in kind
 
-# progress_bar "Loading Images in Kind" 0 6
+progress_bar "Loading Images in Kind" 0 6
 
-# kind load docker-image reviewer_reviews:v1.2 1> "$outfile"
-# progress_bar "Loading Images in Kind" 1 6
+kind load docker-image reviewer_reviews:v1.2 1> "$outfile"
+progress_bar "Loading Images in Kind" 1 6
 
-# kind load docker-image reviewer_mongodb:$version 1> "$outfile"
-# progress_bar "Loading Images in Kind" 2 6
+kind load docker-image reviewer_mongodb:$version 1> "$outfile"
+progress_bar "Loading Images in Kind" 2 6
 
-# kind load docker-image reviewer_mysql:$version 1> "$outfile"
-# progress_bar "Loading Images in Kind" 3 6
+kind load docker-image reviewer_mysql:$version 1> "$outfile"
+progress_bar "Loading Images in Kind" 3 6
 
-# kind load docker-image reviewer_productpage:$version 1> "$outfile"
-# progress_bar "Loading Images in Kind" 4 6
+kind load docker-image reviewer_productpage:$version 1> "$outfile"
+progress_bar "Loading Images in Kind" 4 6
 
-# kind load docker-image reviewer_details:$version 1> "$outfile"
-# progress_bar "Loading Images in Kind" 5 6
+kind load docker-image reviewer_details:$version 1> "$outfile"
+progress_bar "Loading Images in Kind" 5 6
 
-# kind load docker-image reviewer_ratings:$version 1> "$outfile"
-# progress_bar "Loading Images in Kind" 6 6
-# echo -ne "\n"
+kind load docker-image reviewer_ratings:$version 1> "$outfile"
+progress_bar "Loading Images in Kind" 6 6
+echo -ne "\n"
 
-# # start all kubernetes objects
+# start all kubernetes objects
 
-# progress_bar "Starting Kubernetes Objects" 0 3
+progress_bar "Starting Kubernetes Objects" 0 3
 
-# kubectl apply -f ./manifests/ 1> "$outfile"
-# progress_bar "Starting Kubernetes Objects" 1 3
+kubectl apply -f ./manifests/ 1> "$outfile"
+progress_bar "Starting Kubernetes Objects" 1 3
 
-# kubectl apply -f ./services/ 1> "$outfile"
-# progress_bar "Starting Kubernetes Objects" 2 3 1> "$outfile"
+kubectl apply -f ./services/ 1> "$outfile"
+progress_bar "Starting Kubernetes Objects" 2 3 1> "$outfile"
 
-# kubectl apply -f ./secrets/ 1>  "$outfile"
-# progress_bar "Starting Kubernetes Objects" 2 3
-# echo -ne '\n'
+kubectl apply -f ./secrets/ 1>  "$outfile"
+progress_bar "Starting Kubernetes Objects" 2 3
+echo -ne '\n'
 
-# progress_bar "PortForwarding" 0 1
-# pod=$(kubectl get pods |grep -oh "\w*productpage\w*" *) 1> "$outfile"
-# kubectl port-forward $pod 30123:9080 1> "$outfile"
-# progress_bar "PortForwarding" 1 1
+progress_bar "PortForwarding" 0 1
+pod=$(kubectl get pods |grep -oh "\w*productpage\w*" *) 1> "$outfile"
+kubectl port-forward $pod 30123:9080 1> "$outfile"
+progress_bar "PortForwarding" 1 1

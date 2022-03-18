@@ -49,22 +49,22 @@ echo -ne "\n"
 
 progress_bar "Loading Images in Kind" 0 6
 
-kind load docker-image reviewer_reviews:v1.2 1> "$outfile"
+kind load docker-image reviewer_reviews:v1.2 1> "$outfile" 2> "$outfile"
 progress_bar "Loading Images in Kind" 1 6
 
-kind load docker-image reviewer_mongodb:"$TAG" 1> "$outfile"
+kind load docker-image reviewer_mongodb:"$TAG" 1> "$outfile" 2> "$outfile"
 progress_bar "Loading Images in Kind" 2 6
 
-kind load docker-image reviewer_mysql:"$TAG" 1> "$outfile"
+kind load docker-image reviewer_mysql:"$TAG" 1> "$outfile" 2> "$outfile"
 progress_bar "Loading Images in Kind" 3 6
 
-kind load docker-image reviewer_productpage:"$TAG" 1> "$outfile"
+kind load docker-image reviewer_productpage:"$TAG" 1> "$outfile" 2> "$outfile"
 progress_bar "Loading Images in Kind" 4 6
 
-kind load docker-image reviewer_details:"$TAG" 1> "$outfile"
+kind load docker-image reviewer_details:"$TAG" 1> "$outfile" 2> "$outfile"
 progress_bar "Loading Images in Kind" 5 6
 
-kind load docker-image reviewer_ratings:"$TAG" 1> "$outfile"
+kind load docker-image reviewer_ratings:"$TAG" 1> "$outfile" 2> "$outfile"
 progress_bar "Loading Images in Kind" 6 6
 echo -ne "\n"
 
@@ -79,7 +79,7 @@ kubectl apply -f ./manifests/ 1> "$outfile"
 progress_bar "Starting Kubernetes Objects" 2 3
 
 kubectl apply -f ./services/ 1> "$outfile"
-progress_bar "Starting Kubernetes Objects" 3 3 1> "$outfile"
+progress_bar "Starting Kubernetes Objects" 3 3
 echo -ne '\n'
 
 #progress_bar "PortForwarding" 0 1

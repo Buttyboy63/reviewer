@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongodb-2
+  labels:
+    app: mongodb
+spec:
+  replicas: 1
+  selector:
+    matchLabels: 
+      app: mongodb
+  template:
+    metadata:
+      labels:
+        app: mongodb
+    spec:
+      containers:
+        - name: my-mongodb-dock
+          image: docker.io/istio/examples-bookinfo-mongodb:1.16.2
+          imagePullPolicy: IfNotPresent
+          ports:
+          - containerPort: 27017
+          volumeMounts:
+          - name: mongodb-storage
+            mountPath: /data/db
+      volumes:
+      - name: mongodb-storage
+        emptyDir: {}

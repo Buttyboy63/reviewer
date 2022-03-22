@@ -11,3 +11,4 @@ CREATE TABLE `ratings` (
 );
 INSERT INTO ratings (ReviewID, Rating) VALUES (1, 5);
 INSERT INTO ratings (ReviewID, Rating) VALUES (2, 4);
+INSERT INTO ratings (ReviewID, Rating) VALUES (3, 1);

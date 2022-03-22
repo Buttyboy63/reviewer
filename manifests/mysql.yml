@@ -17,6 +17,10 @@ spec:
       containers:
         - name: my-mysql-dock
           image: reviewer_mysql:v1.2
+          ports:
+            - name: bdd
+              containerPort: 3306 
+              protocol: TCP
           env:
             - name: MYSQL_ROOT_PASSWORD
               valueFrom:

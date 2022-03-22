@@ -17,3 +17,7 @@ spec:
       containers:
         - name: my-mongodb-dock
           image: reviewer_mongodb:v1.2
+          ports:
+            - name: bdd
+              containerPort: 27017
+              protocol: TCP

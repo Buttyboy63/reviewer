@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ratingsv2
+  labels:
+    app: ratings
+spec:
+  replicas: 5
+  selector:
+    matchLabels: 
+      app: ratings
+  template:
+    metadata:
+      labels:
+        app: ratings
+    spec:
+      containers:
+        - name: my-ratingsv2-dock
+          image: docker.io/istio/examples-bookinfo-ratings-v2
+          ports:
+            - name: web
+              containerPort: 9080
+              protocol: TCP

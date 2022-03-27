@@ -4,9 +4,12 @@ metadata:
   name: ratings
   labels:
     app: ratings
+    color: blue
 spec:
   ports:
   - port: 9080
     protocol: TCP
+  type: LoadBalancer
   selector:
     app: ratings
+    color: blue 

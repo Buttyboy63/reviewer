@@ -4,15 +4,18 @@ metadata:
   name: ratingsv2
   labels:
     app: ratings
+    color: green
 spec:
   replicas: 5
   selector:
     matchLabels: 
       app: ratings
+      color: green
   template:
     metadata:
       labels:
         app: ratings
+        color: green
     spec:
       containers:
         - name: my-ratingsv2-dock

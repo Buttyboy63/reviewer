@@ -4,15 +4,18 @@ metadata:
   name: ratings
   labels:
     app: ratings
+    color: blue
 spec:
   replicas: 5
   selector:
     matchLabels: 
       app: ratings
+      color: blue
   template:
     metadata:
       labels:
         app: ratings
+        color: blue
     spec:
       containers:
         - name: my-ratings-dock

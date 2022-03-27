@@ -17,6 +17,16 @@ spec:
       containers:
         - name: my-reviews-dock
           image: reviewer_reviews:v1.2
+          readinessProbe:
+            tcpSocket:
+              port: 9080
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            tcpSocket:
+              port: 9080
+            initialDelaySeconds: 15
+            periodSeconds: 20
           ports:
             - name: web
               containerPort: 9080

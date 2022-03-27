@@ -14,6 +14,12 @@ https://dockercheatsheet.com/
 
 Application microservice pour le cours de Technologie des conteneurs.
 
+## Architecture
+
+The manifest folder contains all the deployments. 
+The service folder contains all the services
+The secret folder contains the secret necessary for the deployment of mysql
+
 ## Setup
 
 make sure to have the following software installed :
@@ -26,10 +32,35 @@ Start the docker service :
 sudo systemctl start docker
 ```
 
+Run "docker compose up" to download the custom images
+
+Create Kind cluster
+```bash
+kind create cluster
+#check with docker ps
+```
+
 Run the script :
 ```bash
 chmod +x startup.sh
 ./startup.sh
+```
+
+Run the following commands to start the application:
+```
+kubectl apply -f secrets/
+kubectl apply -f manifests/
+kubectl apply -f services/
+```
+
+Check node ip
+```
+kubectl get nodes -o wide
+```
+
+Connect with browser
+```
+node_ip:30123
 ```
 
 ## Code des services

@@ -6,9 +6,7 @@ GODEFROY Simon
 
 HITSCH Pierre
 
-### Cheatsheet hehehe
-
-https://dockercheatsheet.com/
+Un compte rendu de nos TP est disponible sur le dépot git (Technologie des conteneurs) en version markdown et html
 
 # ZZ Book
 
